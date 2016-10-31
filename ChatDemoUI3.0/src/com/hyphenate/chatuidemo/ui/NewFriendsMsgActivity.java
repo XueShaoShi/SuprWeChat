@@ -29,7 +29,6 @@ import java.util.List;
  *
  */
 public class NewFriendsMsgActivity extends BaseActivity {
-
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
