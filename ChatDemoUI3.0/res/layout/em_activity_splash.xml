@@ -6,12 +6,10 @@
     android:background="@color/black">
 
     <ImageView
-        android:id="@+id/iv_splash_logo"
         android:layout_width="80dp"
         android:layout_height="80dp"
+        android:layout_marginTop="150dp"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="114dp"
-        android:src="@drawable/icon_logo"/>
-
+        android:src="@drawable/icon_logo" />
 
 </RelativeLayout>
