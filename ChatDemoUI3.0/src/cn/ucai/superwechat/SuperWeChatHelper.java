@@ -39,6 +39,7 @@ import cn.ucai.superwechat.ui.ChatActivity;
 import cn.ucai.superwechat.ui.MainActivity;
 import cn.ucai.superwechat.ui.VideoCallActivity;
 import cn.ucai.superwechat.ui.VoiceCallActivity;
+import cn.ucai.superwechat.utils.L;
 import cn.ucai.superwechat.utils.PreferenceManager;
 import com.hyphenate.easeui.controller.EaseUI;
 import com.hyphenate.easeui.controller.EaseUI.EaseEmojiconInfoProvider;
@@ -47,6 +48,7 @@ import com.hyphenate.easeui.controller.EaseUI.EaseUserProfileProvider;
 import com.hyphenate.easeui.domain.EaseEmojicon;
 import com.hyphenate.easeui.domain.EaseEmojiconGroupEntity;
 import com.hyphenate.easeui.domain.EaseUser;
+import com.hyphenate.easeui.domain.User;
 import com.hyphenate.easeui.model.EaseAtMessageHelper;
 import com.hyphenate.easeui.model.EaseNotifier;
 import com.hyphenate.easeui.model.EaseNotifier.EaseNotificationInfoProvider;
@@ -128,6 +130,7 @@ public class SuperWeChatHelper {
     private LocalBroadcastManager broadcastManager;
 
     private boolean isGroupAndContactListenerRegisted;
+    private User currentUser = null;
 
 	private SuperWeChatHelper() {
 	}
@@ -141,9 +144,8 @@ public class SuperWeChatHelper {
 
 	/**
 	 * init helper
-	 * 
 	 * @param context
-	 *            application context
+	 * application context
 	 */
 	public void init(Context context) {
 	    demoModel = new SuperWeChatModel(context);
@@ -151,11 +153,10 @@ public class SuperWeChatHelper {
 	    //use default options if options is null
 		if (EaseUI.getInstance().init(context, options)) {
 		    appContext = context;
-		    
 		    //debug mode, you'd better set it to false, if you want release your App officially.
 		    EMClient.getInstance().setDebugMode(true);
 		    //get easeui instance
-		    easeUI = EaseUI.getInstance();
+            easeUI = EaseUI.getInstance();
 		    //to set user's profile and avatar
 		    setEaseUIProviders();
 			//initialize preference manager
@@ -846,7 +847,6 @@ public class SuperWeChatHelper {
 	/**
 	 * update contact list
 	 * 
-	 * @param contactList
 	 */
 	public void setContactList(Map<String, EaseUser> aContactList) {
 		if(aContactList == null){
@@ -917,8 +917,6 @@ public class SuperWeChatHelper {
 
 	 /**
      * update user list to cache and database
-     *
-     * @param contactList
      */
     public void updateContactList(List<EaseUser> contactInfoList) {
          for (EaseUser u : contactInfoList) {
@@ -1241,4 +1239,16 @@ public class SuperWeChatHelper {
         easeUI.popActivity(activity);
     }
 
+    public User getCurrentUser() {
+        if (currentUser == null) {
+            String username = EMClient.getInstance().getCurrentUser();
+            L.e(TAG,"getCurrentUser="+username);
+            currentUser = new User(username);
+        }
+        return currentUser;
+    }
+
+    public void setCurrentUser(User currentUser) {
+        this.currentUser = currentUser;
+    }
 }
