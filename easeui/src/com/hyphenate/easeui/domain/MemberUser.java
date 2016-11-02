@@ -1,19 +1,19 @@
-package cn.ucai.superwechat.bean;
+package com.hyphenate.easeui.domain;
 
 import java.io.Serializable;
 
-public class MemberUserAvatar extends UserAvatar implements Serializable {
+public class MemberUser extends User implements Serializable {
 	private Integer mmemberId;
 	private Integer mmemberGroupId;
 	private String mmemberGroupHxid;
 	private Integer mmemberPermission;
-	public MemberUserAvatar() {
+	public MemberUser() {
 		super();
 	}
 
-	public MemberUserAvatar(String muserName, String muserNick, Integer mavatarId, String mavatarPath,String mavatarSuffix,
-			Integer mavatarType, String mavatarLastUpdateTime,Integer mmemberId, Integer mmemberGroupId, String mmemberGroupHxid,
-			Integer mmemberPermission) {
+	public MemberUser(String muserName, String muserNick, Integer mavatarId, String mavatarPath, String mavatarSuffix,
+					  Integer mavatarType, String mavatarLastUpdateTime, Integer mmemberId, Integer mmemberGroupId, String mmemberGroupHxid,
+					  Integer mmemberPermission) {
 		super(muserName, muserNick, mavatarId, mavatarPath,mavatarSuffix, mavatarType, mavatarLastUpdateTime);
 		this.mmemberId = mmemberId;
 		this.mmemberGroupId = mmemberGroupId;
