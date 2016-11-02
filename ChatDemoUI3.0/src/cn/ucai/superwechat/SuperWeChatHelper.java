@@ -132,6 +132,7 @@ public class SuperWeChatHelper {
     private boolean isGroupAndContactListenerRegisted;
     private User currentUser = null;
 
+
 	private SuperWeChatHelper() {
 	}
 
