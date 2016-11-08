@@ -98,6 +98,10 @@
             android:screenOrientation="portrait"
             android:theme="@style/horizontal_slide"
             android:windowSoftInputMode="stateVisible"/>
+        <activity
+            android:name=".ui.FriendProfileActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/horizontal_slide"/>
         <!-- 群组详情 -->
         <activity
             android:name=".ui.GroupDetailsActivity"
@@ -477,8 +481,7 @@
 
         <activity android:name=".ui.GuideActivity">
         </activity>
-        <activity android:name=".ui.FriendProfileActivity">
-        </activity>
+
         <activity android:name=".ui.AddFriendActivity">
         </activity>
     </application>
