@@ -649,13 +649,13 @@ public class SuperWeChatHelper {
         }
 
         @Override
-        public void onContactDeleted(String username) {
+        public void onContactDeleted(final String username) {
             L.e(TAG,"MyContactListener,onContactDeleted...");
             Map<String, EaseUser> localUsers = SuperWeChatHelper.getInstance().getContactList();
             localUsers.remove(username);
             userDao.deleteContact(username);
             inviteMessgeDao.deleteMessage(username);
-
+            SuperWeChatHelper.getInstance().delAppContact(username);
             broadcastManager.sendBroadcast(new Intent(Constant.ACTION_CONTACT_CHANAGED));
         }
 
@@ -706,6 +706,11 @@ public class SuperWeChatHelper {
             // your request was refused
             Log.d(username, username + " refused to your request");
         }
+    }
+
+    public void delAppContact(String username) {
+        getAppContactList().remove(username);
+        demoModel.delAppContact(username);
     }
 
     /**
